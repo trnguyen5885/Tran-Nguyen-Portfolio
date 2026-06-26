@@ -1,0 +1,81 @@
+{
+  "Metadata": {
+    "title": "Nguyen Tran Trung Nguyen — Mobile Engineer",
+    "description": "Portfolio of Nguyen Tran Trung Nguyen, a Mobile Engineer with experience in React Native, Flutter, NFC, RESTful APIs, and mobile delivery workflows."
+  },
+  "Navigation": {
+    "home": "Home",
+    "showcase": "Showcase",
+    "menu": "Open navigation",
+    "closeMenu": "Close navigation",
+    "language": "Switch language",
+    "theme": "Switch color theme"
+  },
+  "Home": {
+    "eyebrow": "Mobile Engineer based in Ho Chi Minh City",
+    "headline": "I build mobile products on a strong technical foundation, with a clear focus on real user value.",
+    "intro": "My work covers React Native, Flutter, native NFC integrations, RESTful APIs, and release automation for mobile products in banking and internal platform environments.",
+    "viewWork": "View showcase",
+    "contact": "Get in touch",
+    "featured": "Selected work",
+    "featuredIntro": "A focused selection of projects that reflect my approach to product delivery, engineering execution, and mobile user experience.",
+    "skills": "Skills & expertise",
+    "aboutTitle": "A Mobile Engineer focused on both product quality and technical foundations.",
+    "aboutBody": "I turn business requirements into maintainable mobile solutions that support product goals, long-term stability, and a dependable user experience.",
+    "aboutLink": "View profile",
+    "ctaTitle": "Looking for a dependable Mobile Engineer?",
+    "ctaBody": "I am open to conversations about career opportunities, product collaboration, and technical challenges in mobile development.",
+    "ctaLink": "Get in touch"
+  },
+  "Showcase": {
+    "eyebrow": "Selected mobile work",
+    "title": "Showcase",
+    "intro": "A selection of mobile projects with delivery context, scope of responsibility, and technical highlights drawn from professional experience.",
+    "indexLabel": "Showcase project index",
+    "indexTitle": "Jump to a project",
+    "role": "Role",
+    "period": "Period",
+    "stack": "Stack",
+    "repository": "Repository",
+    "live": "Live project",
+    "demoEyebrow": "Local demo",
+    "demoTitle": "{project} in motion",
+    "demoLabel": "Video demonstration for {project}",
+    "captionsEn": "English captions",
+    "captionsVi": "Vietnamese captions",
+    "videoFallback": "Your browser does not support HTML video."
+  },
+  "About": {
+    "eyebrow": "About",
+    "title": "Building mobile experiences across frameworks",
+    "intro": "I focus on adaptable mobile engineering: understanding business requirements, shaping dependable technical solutions, and continuing to grow as the platform evolves.",
+    "experience": "Experience",
+    "education": "Education & certification",
+    "name": "Name",
+    "role": "Role",
+    "location": "Location",
+    "now": "Present",
+    "placeholder": "Professional experience will be added here.",
+    "educationPlaceholder": "Education and certifications will be added here.",
+    "credential": "View credential"
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Let’s connect on the right opportunity.",
+    "intro": "Email is the most direct way to reach me about Mobile Engineer roles, product collaboration, or technical discussions related to mobile development.",
+    "email": "Send an email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "resume": "Available on request",
+    "resumeHint": "The résumé contains private contact details and is available by email."
+  },
+  "Footer": {
+    "note": "Mobile Engineer based in Ho Chi Minh City.",
+    "backToTop": "Back to top"
+  },
+  "NotFound": {
+    "title": "Page not found.",
+    "body": "The address may be outdated, or the content may have been moved.",
+    "action": "Return home"
+  }
+}

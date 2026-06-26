@@ -1,0 +1,81 @@
+{
+  "Metadata": {
+    "title": "Nguyen Tran Trung Nguyen — Kỹ sư Mobile",
+    "description": "Portfolio của Nguyen Tran Trung Nguyen, Kỹ sư Mobile với kinh nghiệm React Native, Flutter, NFC, RESTful API và quy trình phát hành ứng dụng."
+  },
+  "Navigation": {
+    "home": "Trang chủ",
+    "showcase": "Showcase",
+    "menu": "Mở điều hướng",
+    "closeMenu": "Đóng điều hướng",
+    "language": "Đổi ngôn ngữ",
+    "theme": "Đổi giao diện màu"
+  },
+  "Home": {
+    "eyebrow": "Kỹ sư Mobile tại TP. Hồ Chí Minh",
+    "headline": "Tôi xây dựng sản phẩm mobile dựa trên nền tảng kỹ thuật vững chắc và hướng đến giá trị thực tế cho người dùng.",
+    "intro": "Tôi làm việc với React Native, Flutter, tích hợp NFC native, RESTful API và tự động hóa quy trình phát hành cho các sản phẩm mobile trong lĩnh vực ngân hàng và nền tảng nội bộ.",
+    "viewWork": "Xem showcase",
+    "contact": "Liên hệ với tôi",
+    "featured": "Dự án chọn lọc",
+    "featuredIntro": "Một số dự án tiêu biểu thể hiện cách tôi tiếp cận sản phẩm, triển khai kỹ thuật và tối ưu trải nghiệm trên mobile.",
+    "skills": "Kỹ năng & chuyên môn",
+    "aboutTitle": "Một Kỹ sư Mobile theo đuổi cả chất lượng sản phẩm lẫn nền tảng kỹ thuật.",
+    "aboutBody": "Tôi tập trung chuyển yêu cầu nghiệp vụ thành giải pháp mobile dễ bảo trì, ổn định và phù hợp với mục tiêu phát triển dài hạn của sản phẩm.",
+    "aboutLink": "Xem hồ sơ",
+    "ctaTitle": "Bạn đang tìm một Mobile Engineer đáng tin cậy?",
+    "ctaBody": "Tôi sẵn sàng trao đổi về cơ hội nghề nghiệp, hợp tác sản phẩm hoặc những bài toán kỹ thuật trên mobile.",
+    "ctaLink": "Liên hệ với tôi"
+  },
+  "Showcase": {
+    "eyebrow": "Dự án mobile tiêu biểu",
+    "title": "Showcase",
+    "intro": "Tổng hợp các dự án mobile tiêu biểu, kèm bối cảnh triển khai, phạm vi trách nhiệm và các điểm nhấn kỹ thuật từ kinh nghiệm thực tế.",
+    "indexLabel": "Mục lục dự án showcase",
+    "indexTitle": "Đi đến dự án",
+    "role": "Vai trò",
+    "period": "Thời gian",
+    "stack": "Công nghệ",
+    "repository": "Mã nguồn",
+    "live": "Xem trực tiếp",
+    "demoEyebrow": "Demo local",
+    "demoTitle": "Trải nghiệm {project}",
+    "demoLabel": "Video demo cho {project}",
+    "captionsEn": "Phụ đề tiếng Anh",
+    "captionsVi": "Phụ đề tiếng Việt",
+    "videoFallback": "Trình duyệt của bạn không hỗ trợ video HTML."
+  },
+  "About": {
+    "eyebrow": "Giới thiệu",
+    "title": "Phát triển trải nghiệm mobile xuyên suốt nhiều framework",
+    "intro": "Tôi theo đuổi tư duy kỹ thuật linh hoạt: nắm rõ yêu cầu nghiệp vụ, xây dựng giải pháp đáng tin cậy và liên tục cập nhật khi nền tảng công nghệ thay đổi.",
+    "experience": "Kinh nghiệm",
+    "education": "Học vấn & chứng chỉ",
+    "name": "Tên",
+    "role": "Vai trò",
+    "location": "Địa điểm",
+    "now": "Hiện tại",
+    "placeholder": "Kinh nghiệm làm việc sẽ được cập nhật tại đây.",
+    "educationPlaceholder": "Học vấn và chứng chỉ sẽ được cập nhật tại đây.",
+    "credential": "Xem chứng chỉ"
+  },
+  "Contact": {
+    "eyebrow": "Liên hệ",
+    "title": "Kết nối để trao đổi về cơ hội phù hợp.",
+    "intro": "Email là kênh phù hợp nhất để trao đổi với tôi về vị trí Mobile Engineer, cơ hội hợp tác sản phẩm hoặc các chủ đề kỹ thuật liên quan đến mobile.",
+    "email": "Gửi email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "resume": "Cung cấp khi liên hệ",
+    "resumeHint": "CV có thông tin liên hệ riêng tư và sẽ được cung cấp qua email."
+  },
+  "Footer": {
+    "note": "Kỹ sư Mobile tại TP. Hồ Chí Minh.",
+    "backToTop": "Lên đầu trang"
+  },
+  "NotFound": {
+    "title": "Không tìm thấy trang.",
+    "body": "Đường dẫn có thể không còn hiệu lực hoặc nội dung đã được di chuyển.",
+    "action": "Quay về trang chủ"
+  }
+}

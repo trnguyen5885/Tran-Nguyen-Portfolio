@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">VietABank ezSHOP project cover</title>
+  <desc id="description">An abstract mobile banking interface with NFC signal lines.</desc>
+  <rect width="1600" height="900" fill="#dfe9df"/>
+  <circle cx="1280" cy="140" r="330" fill="#b6ccb9" opacity=".58"/>
+  <circle cx="1320" cy="730" r="390" fill="#f2e8ce" opacity=".72"/>
+  <g transform="translate(280 96)">
+    <rect width="390" height="708" rx="62" fill="#17221a"/>
+    <rect x="18" y="18" width="354" height="672" rx="48" fill="#f8f8f3"/>
+    <rect x="139" y="38" width="112" height="18" rx="9" fill="#17221a"/>
+    <text x="54" y="126" fill="#17221a" font-family="Arial, sans-serif" font-size="26" font-weight="700">ezSHOP</text>
+    <rect x="54" y="170" width="282" height="148" rx="26" fill="#496950"/>
+    <rect x="78" y="205" width="138" height="18" rx="9" fill="#dfe9df"/>
+    <rect x="78" y="244" width="210" height="32" rx="10" fill="#f8f8f3"/>
+    <g fill="#dfe9df">
+      <rect x="54" y="360" width="82" height="82" rx="22"/>
+      <rect x="154" y="360" width="82" height="82" rx="22"/>
+      <rect x="254" y="360" width="82" height="82" rx="22"/>
+    </g>
+    <rect x="54" y="490" width="282" height="22" rx="11" fill="#cdd6cd"/>
+    <rect x="54" y="536" width="224" height="22" rx="11" fill="#dfe4dc"/>
+    <rect x="54" y="582" width="254" height="22" rx="11" fill="#dfe4dc"/>
+  </g>
+  <g fill="none" stroke="#496950" stroke-width="18" stroke-linecap="round" opacity=".92">
+    <path d="M850 318c120 0 218 98 218 218"/>
+    <path d="M850 404c72 0 132 59 132 132"/>
+    <path d="M850 490c26 0 47 21 47 47"/>
+  </g>
+  <text x="850" y="700" fill="#17221a" font-family="Arial, sans-serif" font-size="72" font-weight="700">VietABank ezSHOP</text>
+  <text x="854" y="758" fill="#496950" font-family="Arial, sans-serif" font-size="28" letter-spacing="5">MOBILE BANKING · NFC</text>
+</svg>
