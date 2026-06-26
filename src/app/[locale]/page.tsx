@@ -75,7 +75,7 @@ export default async function HomePage({ params }: HomePageProps) {
   };
 
   return (
-    <main id="main-content">
+    <main id="main-content" className="home-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
 
       <section className="hero container">
@@ -115,7 +115,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </StaggerGroup>
       </section>
 
-      <section className="section container split-section">
+      <section className="section container split-section technology-section">
         <Reveal>
           <p className="eyebrow">02 / {t("skills")}</p>
           <h2>{t("skills")}</h2>
