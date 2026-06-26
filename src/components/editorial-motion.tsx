@@ -4,14 +4,15 @@ import * as m from "motion/react-m";
 import type { PropsWithChildren } from "react";
 import type { Variants } from "motion/react";
 
-const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 12, scale: 0.99 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.56, ease },
+    scale: 1,
+    transition: { duration: 0.44, ease },
   },
 };
 
@@ -29,7 +30,7 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  distance = 20,
+  distance = 12,
   once = true,
   scale = 1,
 }: RevealProps) {
@@ -38,8 +39,8 @@ export function Reveal({
     "data-motion": "reveal",
     initial: { opacity: 0, y: distance, scale },
     whileInView: { opacity: 1, y: 0, scale: 1 },
-    viewport: { once, amount: 0.18, margin: "0px 0px -6% 0px" },
-    transition: { duration: 0.56, delay, ease },
+    viewport: { once, amount: 0.22, margin: "0px 0px -8% 0px" },
+    transition: { duration: 0.44, delay, ease },
   } as const;
 
   if (as === "article") return <m.article {...animationProps}>{children}</m.article>;
@@ -60,8 +61,8 @@ export function StaggerGroup({
   as = "div",
   children,
   className,
-  delay = 0.04,
-  stagger = 0.08,
+  delay = 0.03,
+  stagger = 0.055,
   trigger = "viewport",
 }: GroupProps) {
   const variants: Variants = {
@@ -77,7 +78,7 @@ export function StaggerGroup({
       ? { animate: "visible" }
       : {
           whileInView: "visible",
-          viewport: { once: true, amount: 0.14, margin: "0px 0px -6% 0px" },
+          viewport: { once: true, amount: 0.18, margin: "0px 0px -8% 0px" },
         }),
   } as const;
 
@@ -107,7 +108,7 @@ export function StaggerItem({ as = "div", children, className }: ItemProps) {
 
 export function HeroSequence({ children, className }: PropsWithChildren<{ className?: string }>) {
   return (
-    <StaggerGroup className={className} trigger="mount" delay={0.08} stagger={0.09}>
+    <StaggerGroup className={className} trigger="mount" delay={0.04} stagger={0.06}>
       {children}
     </StaggerGroup>
   );

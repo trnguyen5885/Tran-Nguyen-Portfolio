@@ -68,7 +68,7 @@ export const profile = profileSchema.parse({
         en: "Practical React Native course certification.",
         vi: "Chứng nhận hoàn thành khóa học React Native thực hành.",
       },
-      url: "https://canvato.net/sl/udemy-certificate",
+      url: null,
     },
   ],
   skills: [

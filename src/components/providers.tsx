@@ -10,7 +10,7 @@ export function Providers({ children }: PropsWithChildren) {
       <LazyMotion features={domAnimation} strict>
         <MotionConfig
           reducedMotion="user"
-          transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
           {children}
         </MotionConfig>

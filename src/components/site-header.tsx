@@ -64,10 +64,11 @@ export function SiteHeader() {
             id="mobile-navigation"
             className="mobile-nav"
             aria-label={t("menu")}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: -6, scaleY: 0.98 }}
+            animate={{ opacity: 1, y: 0, scaleY: 1 }}
+            exit={{ opacity: 0, y: -4, scaleY: 0.98 }}
+            style={{ transformOrigin: "top" }}
+            transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
           >
             <m.div
               className="container"
@@ -75,13 +76,13 @@ export function SiteHeader() {
               animate="open"
               variants={{
                 closed: {},
-                open: { transition: { staggerChildren: 0.055, delayChildren: 0.03 } },
+                open: { transition: { staggerChildren: 0.045, delayChildren: 0.02 } },
               }}
             >
               {links.map((link) => (
                 <m.div
                   key={link.href}
-                  variants={{ closed: { opacity: 0, y: -6 }, open: { opacity: 1, y: 0 } }}
+                  variants={{ closed: { opacity: 0, y: -4 }, open: { opacity: 1, y: 0 } }}
                 >
                   <Link href={link.href} onClick={() => setOpen(false)}>
                     {t(link.label)}
