@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ScrollParallax, StaggerGroup, StaggerItem } from "@/components/editorial-motion";
 import { SectionHeading } from "@/components/section-heading";
 import { ShowcaseProject } from "@/components/showcase-project";
-import { StaggerGroup, StaggerItem } from "@/components/editorial-motion";
 import { projects } from "@/content/projects";
 import { localize } from "@/content/schema";
 import type { Locale } from "@/i18n/routing";
@@ -65,20 +65,22 @@ export default async function ShowcasePage({ params }: ShowcasePageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <SectionHeading eyebrow={t("eyebrow")} title={t("title")} intro={t("intro")} />
 
-      <nav className="showcase-index" aria-label={t("indexLabel")}>
-        <p>{t("indexTitle")}</p>
-        <StaggerGroup as="ol">
-          {projects.map((project, index) => (
-            <StaggerItem as="li" key={project.slug}>
-              <a href={`#${project.slug}`}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{localize(project.title, locale)}</strong>
-                <span aria-hidden="true">↓</span>
-              </a>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
-      </nav>
+      <ScrollParallax distance={18}>
+        <nav className="showcase-index" aria-label={t("indexLabel")}>
+          <p>{t("indexTitle")}</p>
+          <StaggerGroup as="ol">
+            {projects.map((project, index) => (
+              <StaggerItem as="li" key={project.slug}>
+                <a href={`#${project.slug}`}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{localize(project.title, locale)}</strong>
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </nav>
+      </ScrollParallax>
 
       <div className="showcase-list">
         {projects.map((project, index) => (

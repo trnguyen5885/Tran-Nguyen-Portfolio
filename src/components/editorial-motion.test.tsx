@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { domAnimation, LazyMotion, MotionConfig } from "motion/react";
 import { describe, expect, it } from "vitest";
-import { Reveal, StaggerGroup, StaggerItem } from "./editorial-motion";
+import { Reveal, ScrollParallax, StaggerGroup, StaggerItem } from "./editorial-motion";
 
 function MotionTestProvider({ children }: { children: React.ReactNode }) {
   return (
@@ -35,5 +35,18 @@ describe("editorial motion primitives", () => {
 
     expect(screen.getByRole("list")).toBeInTheDocument();
     expect(screen.getAllByRole("listitem")).toHaveLength(2);
+  });
+
+  it("wraps scroll-linked content without dropping children", () => {
+    const { container } = render(
+      <MotionTestProvider>
+        <ScrollParallax distance={20}>
+          <div>Scroll story</div>
+        </ScrollParallax>
+      </MotionTestProvider>,
+    );
+
+    expect(screen.getByText("Scroll story")).toBeInTheDocument();
+    expect(container.querySelector('[data-motion="scroll-parallax"]')).toBeInTheDocument();
   });
 });

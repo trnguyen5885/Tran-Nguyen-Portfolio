@@ -81,12 +81,16 @@ export const profile = profileSchema.parse({
       items: ["React Native", "Flutter", "Android", "iOS"],
     },
     {
-      label: { en: "Delivery", vi: "Triển khai" },
-      items: ["GitLab CI/CD", "Fastlane", "REST APIs", "Jest"],
+      label: { en: "State Management", vi: "State Management" },
+      items: ["Redux", "MobX-State-Tree", "Zustand"],
     },
     {
-      label: { en: "Tools & state", vi: "Công cụ & state" },
-      items: ["Git", "GitHub", "GitLab", "MobX", "Redux"],
+      label: { en: "CI/CD & Release", vi: "CI/CD & Release" },
+      items: ["GitLab CI/CD", "Fastlane"],
+    },
+    {
+      label: { en: "Tools", vi: "Công cụ" },
+      items: ["Git", "GitHub", "GitLab"],
     },
     {
       label: { en: "Working style", vi: "Kỹ năng làm việc" },

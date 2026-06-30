@@ -8,6 +8,7 @@ import {
   HeroItem,
   HeroSequence,
   Reveal,
+  ScrollParallax,
   StaggerGroup,
   StaggerItem,
 } from "@/components/editorial-motion";
@@ -30,23 +31,25 @@ function Timeline({
   if (!items.length) return <div className="empty-state">{placeholder}</div>;
 
   return (
-    <StaggerGroup as="ol" className="timeline">
-      {items.map((item) => (
-        <StaggerItem as="li" key={`${item.start}-${localize(item.company, locale)}`}>
-          <p className="timeline-date">
-            {item.period ? localize(item.period, locale) : `${item.start} — ${item.end ?? now}`}
-          </p>
-          <h3>{localize(item.role, locale)}</h3>
-          <p>{localize(item.company, locale)}</p>
-          <p className="text-muted">{localize(item.summary, locale)}</p>
-          {item.url && (
-            <a className="timeline-link" href={item.url} target="_blank" rel="noreferrer">
-              {credential} <span aria-hidden="true">↗</span>
-            </a>
-          )}
-        </StaggerItem>
-      ))}
-    </StaggerGroup>
+    <ScrollParallax distance={18}>
+      <StaggerGroup as="ol" className="timeline">
+        {items.map((item) => (
+          <StaggerItem as="li" key={`${item.start}-${localize(item.company, locale)}`}>
+            <p className="timeline-date">
+              {item.period ? localize(item.period, locale) : `${item.start} — ${item.end ?? now}`}
+            </p>
+            <h3>{localize(item.role, locale)}</h3>
+            <p>{localize(item.company, locale)}</p>
+            <p className="text-muted">{localize(item.summary, locale)}</p>
+            {item.url && (
+              <a className="timeline-link" href={item.url} target="_blank" rel="noreferrer">
+                {credential} <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </StaggerItem>
+        ))}
+      </StaggerGroup>
+    </ScrollParallax>
   );
 }
 
@@ -96,38 +99,46 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       <section id="about" className="section container anchor-section">
-        <StaggerGroup className="section-topline">
-          <StaggerItem>
-            <p className="eyebrow">01 / {aboutT("eyebrow")}</p>
-            <h2>{aboutT("title")}</h2>
-          </StaggerItem>
-          <StaggerItem><p className="section-copy">{aboutT("intro")}</p></StaggerItem>
-        </StaggerGroup>
-        <StaggerGroup className="about-intro-grid home-about-grid">
-          <StaggerItem><p className="display-quote">“{localize(profile.bio, locale)}”</p></StaggerItem>
-          <StaggerItem>
-            <dl className="profile-facts">
-              <div><dt>{aboutT("name")}</dt><dd>{profile.name}</dd></div>
-              <div><dt>{aboutT("role")}</dt><dd>{localize(profile.role, locale)}</dd></div>
-              <div><dt>{aboutT("location")}</dt><dd>{localize(profile.location, locale)}</dd></div>
-            </dl>
-          </StaggerItem>
-        </StaggerGroup>
+        <ScrollParallax distance={20}>
+          <StaggerGroup className="section-topline">
+            <StaggerItem>
+              <p className="eyebrow">01 / {aboutT("eyebrow")}</p>
+              <h2>{aboutT("title")}</h2>
+            </StaggerItem>
+            <StaggerItem><p className="section-copy">{aboutT("intro")}</p></StaggerItem>
+          </StaggerGroup>
+        </ScrollParallax>
+        <ScrollParallax distance={26}>
+          <StaggerGroup className="about-intro-grid home-about-grid">
+            <StaggerItem><p className="display-quote">“{localize(profile.bio, locale)}”</p></StaggerItem>
+            <StaggerItem>
+              <dl className="profile-facts">
+                <div><dt>{aboutT("name")}</dt><dd>{profile.name}</dd></div>
+                <div><dt>{aboutT("role")}</dt><dd>{localize(profile.role, locale)}</dd></div>
+                <div><dt>{aboutT("location")}</dt><dd>{localize(profile.location, locale)}</dd></div>
+              </dl>
+            </StaggerItem>
+          </StaggerGroup>
+        </ScrollParallax>
       </section>
 
       <section className="section container split-section technology-section">
-        <Reveal>
-          <p className="eyebrow">02 / {t("skills")}</p>
-          <h2>{t("skills")}</h2>
-        </Reveal>
-        <StaggerGroup className="skill-groups">
-          {profile.skills.map((group) => (
-            <StaggerItem className="skill-group" key={localize(group.label, locale)}>
-              <h3>{localize(group.label, locale)}</h3>
-              <p>{group.items.join(" · ")}</p>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+        <ScrollParallax distance={18}>
+          <Reveal>
+            <p className="eyebrow">02 / {t("skills")}</p>
+            <h2>{t("skills")}</h2>
+          </Reveal>
+        </ScrollParallax>
+        <ScrollParallax distance={16}>
+          <StaggerGroup className="skill-groups">
+            {profile.skills.map((group) => (
+              <StaggerItem className="skill-group" key={localize(group.label, locale)}>
+                <h3>{localize(group.label, locale)}</h3>
+                <p>{group.items.join(" · ")}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </ScrollParallax>
       </section>
 
       <Reveal as="section" className="about-section container home-profile-section">
@@ -159,37 +170,41 @@ export default async function HomePage({ params }: HomePageProps) {
       </Reveal>
 
       <section id="contact" className="section container contact-page anchor-section">
-        <StaggerGroup className="section-topline">
-          <StaggerItem>
-            <p className="eyebrow">05 / {contactT("eyebrow")}</p>
-            <h2>{contactT("title")}</h2>
-          </StaggerItem>
-          <StaggerItem><p className="section-copy">{contactT("intro")}</p></StaggerItem>
-        </StaggerGroup>
-        <StaggerGroup className="contact-list">
-          <StaggerItem className="contact-motion-item">
-            <a href={`mailto:${profile.email}`}><span>{contactT("email")}</span><strong>{profile.email}</strong><span aria-hidden="true">↗</span></a>
-          </StaggerItem>
-          {profile.githubUrl && (
-            <StaggerItem className="contact-motion-item">
-              <a href={profile.githubUrl} target="_blank" rel="noreferrer"><span>{contactT("github")}</span><strong>GitHub</strong><span aria-hidden="true">↗</span></a>
+        <ScrollParallax distance={20}>
+          <StaggerGroup className="section-topline">
+            <StaggerItem>
+              <p className="eyebrow">05 / {contactT("eyebrow")}</p>
+              <h2>{contactT("title")}</h2>
             </StaggerItem>
-          )}
-          {profile.linkedinUrl && (
+            <StaggerItem><p className="section-copy">{contactT("intro")}</p></StaggerItem>
+          </StaggerGroup>
+        </ScrollParallax>
+        <ScrollParallax distance={18}>
+          <StaggerGroup className="contact-list">
             <StaggerItem className="contact-motion-item">
-              <a href={profile.linkedinUrl} target="_blank" rel="noreferrer"><span>{contactT("linkedin")}</span><strong>LinkedIn</strong><span aria-hidden="true">↗</span></a>
+              <a href={`mailto:${profile.email}`}><span>{contactT("email")}</span><strong>{profile.email}</strong><span aria-hidden="true">↗</span></a>
             </StaggerItem>
-          )}
-          {profile.resumeUrl ? (
-            <StaggerItem className="contact-motion-item">
-              <a href={profile.resumeUrl} download="CV_Nguyen Tran Trung Nguyen_Mobile Engineer.pdf"><span>CV / Résumé</span><strong>PDF</strong><span aria-hidden="true">↓</span></a>
-            </StaggerItem>
-          ) : (
-            <StaggerItem className="contact-motion-item">
-              <div className="contact-disabled" title={contactT("resumeHint")}><span>CV / Résumé</span><strong>{contactT("resume")}</strong><span aria-hidden="true">—</span></div>
-            </StaggerItem>
-          )}
-        </StaggerGroup>
+            {profile.githubUrl && (
+              <StaggerItem className="contact-motion-item">
+                <a href={profile.githubUrl} target="_blank" rel="noreferrer"><span>{contactT("github")}</span><strong>GitHub</strong><span aria-hidden="true">↗</span></a>
+              </StaggerItem>
+            )}
+            {profile.linkedinUrl && (
+              <StaggerItem className="contact-motion-item">
+                <a href={profile.linkedinUrl} target="_blank" rel="noreferrer"><span>{contactT("linkedin")}</span><strong>LinkedIn</strong><span aria-hidden="true">↗</span></a>
+              </StaggerItem>
+            )}
+            {profile.resumeUrl ? (
+              <StaggerItem className="contact-motion-item">
+                <a href={profile.resumeUrl} download="CV_Nguyen Tran Trung Nguyen_Mobile Engineer.pdf"><span>CV / Résumé</span><strong>PDF</strong><span aria-hidden="true">↓</span></a>
+              </StaggerItem>
+            ) : (
+              <StaggerItem className="contact-motion-item">
+                <div className="contact-disabled" title={contactT("resumeHint")}><span>CV / Résumé</span><strong>{contactT("resume")}</strong><span aria-hidden="true">—</span></div>
+              </StaggerItem>
+            )}
+          </StaggerGroup>
+        </ScrollParallax>
       </section>
     </main>
   );

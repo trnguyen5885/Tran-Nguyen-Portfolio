@@ -1,18 +1,19 @@
 "use client";
 
 import * as m from "motion/react-m";
-import type { PropsWithChildren } from "react";
-import type { Variants } from "motion/react";
+import { useReducedMotion, useScroll, useTransform, type Variants } from "motion/react";
+import { useRef, type PropsWithChildren } from "react";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 12, scale: 0.99 },
+  hidden: { opacity: 0, y: 28, scale: 0.975, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.44, ease },
+    filter: "blur(0px)",
+    transition: { duration: 0.58, ease },
   },
 };
 
@@ -30,17 +31,17 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  distance = 12,
+  distance = 34,
   once = true,
-  scale = 1,
+  scale = 0.975,
 }: RevealProps) {
   const animationProps = {
     className,
     "data-motion": "reveal",
-    initial: { opacity: 0, y: distance, scale },
-    whileInView: { opacity: 1, y: 0, scale: 1 },
-    viewport: { once, amount: 0.22, margin: "0px 0px -8% 0px" },
-    transition: { duration: 0.44, delay, ease },
+    initial: { opacity: 0, y: distance, scale, filter: "blur(10px)" },
+    whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
+    viewport: { once, amount: 0.28, margin: "0px 0px -12% 0px" },
+    transition: { duration: 0.62, delay, ease },
   } as const;
 
   if (as === "article") return <m.article {...animationProps}>{children}</m.article>;
@@ -62,7 +63,7 @@ export function StaggerGroup({
   children,
   className,
   delay = 0.03,
-  stagger = 0.055,
+  stagger = 0.075,
   trigger = "viewport",
 }: GroupProps) {
   const variants: Variants = {
@@ -78,7 +79,7 @@ export function StaggerGroup({
       ? { animate: "visible" }
       : {
           whileInView: "visible",
-          viewport: { once: true, amount: 0.18, margin: "0px 0px -8% 0px" },
+          viewport: { once: true, amount: 0.24, margin: "0px 0px -12% 0px" },
         }),
   } as const;
 
@@ -104,6 +105,39 @@ export function StaggerItem({ as = "div", children, className }: ItemProps) {
   if (as === "article") return <m.article {...animationProps}>{children}</m.article>;
   if (as === "li") return <m.li {...animationProps}>{children}</m.li>;
   return <m.div {...animationProps}>{children}</m.div>;
+}
+
+type ScrollParallaxProps = PropsWithChildren<{
+  className?: string;
+  distance?: number;
+}>;
+
+export function ScrollParallax({
+  children,
+  className,
+  distance = 24,
+}: ScrollParallaxProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const reducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 0.5, 1], [distance * 1.4, 0, -distance]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.965, 1, 1.025]);
+  const opacity = useTransform(scrollYProgress, [0, 0.18, 0.82, 1], [0.64, 1, 1, 0.78]);
+
+  return (
+    <m.div
+      ref={ref}
+      className={className}
+      data-motion="scroll-parallax"
+      style={reducedMotion ? undefined : { y, scale, opacity, willChange: "transform, opacity" }}
+    >
+      {children}
+    </m.div>
+  );
 }
 
 export function HeroSequence({ children, className }: PropsWithChildren<{ className?: string }>) {

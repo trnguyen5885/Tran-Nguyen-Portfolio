@@ -12,7 +12,7 @@
     "theme": "Switch color theme"
   },
   "Home": {
-    "eyebrow": "Mobile Engineer based in Ho Chi Minh City",
+    "eyebrow": "Mobile Engineer",
     "headline": "I build mobile products on a strong technical foundation, with a clear focus on real user value.",
     "intro": "My work covers React Native, Flutter, native NFC integrations, RESTful APIs, and release automation for mobile products in banking and internal platform environments.",
     "viewWork": "View showcase",
@@ -70,7 +70,7 @@
     "resumeHint": "The résumé contains private contact details and is available by email."
   },
   "Footer": {
-    "note": "Mobile Engineer based in Ho Chi Minh City.",
+    "note": "Mobile Engineer.",
     "backToTop": "Back to top"
   },
   "NotFound": {

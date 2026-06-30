@@ -1,0 +1,16 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="112" fill="#171715"/>
+  <rect x="24" y="24" width="464" height="464" rx="96" stroke="#48634D" stroke-width="18" opacity="0.58"/>
+  <text
+    x="256"
+    y="338"
+    text-anchor="middle"
+    fill="#F7F6F2"
+    font-family="Arial Black, Arial, Helvetica, sans-serif"
+    font-size="272"
+    font-weight="700"
+    letter-spacing="-14"
+  >
+    tn
+  </text>
+</svg>
