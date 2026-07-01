@@ -50,7 +50,7 @@ export default async function ShowcasePage({ params }: ShowcasePageProps) {
         ...(project.demoVideo && {
           video: {
             "@type": "VideoObject",
-            name: t("demoTitle", { project: localize(project.title, locale) }),
+            name: localize(project.demoVideo.title, locale),
             description: localize(project.summary, locale),
             contentUrl: `${siteUrl}${project.demoVideo.src}`,
             thumbnailUrl: `${siteUrl}${project.demoVideo.poster}`,

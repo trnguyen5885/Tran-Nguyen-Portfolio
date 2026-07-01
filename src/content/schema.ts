@@ -39,16 +39,19 @@ export const profileSchema = z.object({
 
 export const projectMetadataSchema = z.object({
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  kind: z.enum(["product", "technical-demo"]),
   title: localizedText,
   summary: localizedText,
   role: localizedText,
   period: localizedText,
   stack: z.array(z.string().min(1)).min(1),
-  cover: z.string().startsWith("/"),
+  cover: z.string().startsWith("/").nullable(),
   featured: z.boolean(),
   repositoryUrl: z.url().nullable(),
   liveUrl: z.url().nullable(),
   demoVideo: z.object({
+    title: localizedText,
+    viewport: z.enum(["mobile", "desktop"]).default("mobile"),
     src: z.string().startsWith("/").regex(/\.(mp4|webm)$/i),
     poster: z.string().startsWith("/"),
     captions: z.object({
@@ -63,6 +66,7 @@ export type Experience = z.infer<typeof experienceSchema>;
 export type SkillGroup = z.infer<typeof skillGroupSchema>;
 export type ProjectMetadata = z.infer<typeof projectMetadataSchema>;
 export type DemoVideo = NonNullable<ProjectMetadata["demoVideo"]>;
+export type ProjectKind = ProjectMetadata["kind"];
 
 export function localize<T>(value: Record<Locale, T>, locale: Locale): T {
   return value[locale];
