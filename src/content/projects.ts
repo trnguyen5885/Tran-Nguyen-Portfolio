@@ -118,11 +118,4 @@ export const projects: Project[] = [
       vi: ViMyVng,
     },
   },
-  {
-    ...technicalDemoSample,
-    content: {
-      en: EnTechnicalDemoSample,
-      vi: ViTechnicalDemoSample,
-    },
-  },
 ];
