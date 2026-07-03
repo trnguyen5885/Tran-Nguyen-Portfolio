@@ -32,28 +32,20 @@ export function CustomCursor() {
       const target = event.target;
       setInteractive(target instanceof Element && Boolean(target.closest(interactiveSelector)));
     };
-    const handleOut = (event: PointerEvent) => {
-      if (!event.relatedTarget) setVisible(false);
-    };
     const handleDown = () => setPressed(true);
     const handleUp = () => setPressed(false);
-    const handleBlur = () => setVisible(false);
 
     window.addEventListener("pointermove", handleMove, { passive: true });
     window.addEventListener("pointerdown", handleDown, { passive: true });
     window.addEventListener("pointerup", handleUp, { passive: true });
-    window.addEventListener("blur", handleBlur);
     document.addEventListener("pointerover", handleOver, { passive: true });
-    document.addEventListener("pointerout", handleOut, { passive: true });
 
     return () => {
       root.classList.remove("has-custom-cursor");
       window.removeEventListener("pointermove", handleMove);
       window.removeEventListener("pointerdown", handleDown);
       window.removeEventListener("pointerup", handleUp);
-      window.removeEventListener("blur", handleBlur);
       document.removeEventListener("pointerover", handleOver);
-      document.removeEventListener("pointerout", handleOut);
     };
   }, [x, y]);
 

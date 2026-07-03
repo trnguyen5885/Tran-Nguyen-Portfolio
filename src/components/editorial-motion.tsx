@@ -22,6 +22,7 @@ type RevealProps = PropsWithChildren<{
   className?: string;
   delay?: number;
   distance?: number;
+  id?: string;
   once?: boolean;
   scale?: number;
 }>;
@@ -32,11 +33,13 @@ export function Reveal({
   className,
   delay = 0,
   distance = 34,
+  id,
   once = true,
   scale = 0.975,
 }: RevealProps) {
   const animationProps = {
     className,
+    id,
     "data-motion": "reveal",
     initial: { opacity: 0, y: distance, scale, filter: "blur(10px)" },
     whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },

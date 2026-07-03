@@ -1,24 +1,21 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
 import { Reveal, ScrollParallax, StaggerGroup, StaggerItem } from "./editorial-motion";
 import type { Project } from "@/content/projects";
-import { localize } from "@/content/schema";
-import type { Locale } from "@/i18n/routing";
+import { siteText } from "@/content/site-text";
 
 type ShowcaseProjectProps = {
   index: number;
-  locale: Locale;
   project: Project;
 };
 
-export async function ShowcaseProject({ index, locale, project }: ShowcaseProjectProps) {
-  const t = await getTranslations("Showcase");
-  const Content = project.content[locale];
+export function ShowcaseProject({ index, project }: ShowcaseProjectProps) {
+  const t = siteText.showcase;
+  const Content = project.content;
   const hasMedia = Boolean(project.cover || project.demoVideo);
-  const demoTitle = project.demoVideo ? localize(project.demoVideo.title, locale) : "";
+  const demoTitle = project.demoVideo?.title ?? "";
   const demoViewport = project.demoVideo?.viewport ?? "mobile";
   const hasProjectLinks = Boolean(project.repositoryUrl || project.liveUrl);
-  const kindLabel = t(project.kind === "technical-demo" ? "technicalDemoType" : "productType");
+  const kindLabel = project.kind === "technical-demo" ? t.technicalDemoType : t.productType;
 
   return (
     <article
@@ -29,13 +26,13 @@ export async function ShowcaseProject({ index, locale, project }: ShowcaseProjec
         <StaggerItem>
           <div className="showcase-kicker">
             <p className="eyebrow">
-              {String(index + 1).padStart(2, "0")} / {localize(project.period, locale)}
+              {String(index + 1).padStart(2, "0")} / {project.period}
             </p>
             <span className={`showcase-kind-badge showcase-kind-${project.kind}`}>{kindLabel}</span>
           </div>
         </StaggerItem>
-        <StaggerItem><h2>{localize(project.title, locale)}</h2></StaggerItem>
-        <StaggerItem><p className="showcase-summary">{localize(project.summary, locale)}</p></StaggerItem>
+        <StaggerItem><h2>{project.title}</h2></StaggerItem>
+        <StaggerItem><p className="showcase-summary">{project.summary}</p></StaggerItem>
       </StaggerGroup>
 
       {hasMedia && (
@@ -66,7 +63,7 @@ export async function ShowcaseProject({ index, locale, project }: ShowcaseProjec
                     <h3>{demoTitle}</h3>
                   </div>
                   <p className="showcase-demo-note">
-                    {t(demoViewport === "mobile" ? "technicalDemoMobileHint" : "technicalDemoDesktopHint")}
+                    {demoViewport === "mobile" ? t.technicalDemoMobileHint : t.technicalDemoDesktopHint}
                   </p>
                 </div>
                 <div className={`showcase-demo-device showcase-demo-device-${demoViewport}`}>
@@ -76,16 +73,13 @@ export async function ShowcaseProject({ index, locale, project }: ShowcaseProjec
                     playsInline
                     preload="metadata"
                     poster={project.demoVideo.poster}
-                    aria-label={t("technicalDemoLabel", { demo: demoTitle })}
+                    aria-label={`Video demonstration for ${demoTitle}`}
                   >
                     <source src={project.demoVideo.src} type={project.demoVideo.src.endsWith(".webm") ? "video/webm" : "video/mp4"} />
                     {project.demoVideo.captions && (
-                      <>
-                        <track kind="captions" src={project.demoVideo.captions.en} srcLang="en" label={t("captionsEn")} default={locale === "en"} />
-                        <track kind="captions" src={project.demoVideo.captions.vi} srcLang="vi" label={t("captionsVi")} default={locale === "vi"} />
-                      </>
+                      <track kind="captions" src={project.demoVideo.captions} srcLang="en" label={t.captions} default />
                     )}
-                    {t("videoFallback")}
+                    {t.videoFallback}
                   </video>
                 </div>
               </Reveal>
@@ -99,21 +93,21 @@ export async function ShowcaseProject({ index, locale, project }: ShowcaseProjec
           <Reveal className="showcase-sidebar" scale={0.994}>
             <div className="showcase-meta-panel">
               <dl className="showcase-meta">
-                <div><dt>{t("role")}</dt><dd>{localize(project.role, locale)}</dd></div>
-                <div><dt>{t("period")}</dt><dd>{localize(project.period, locale)}</dd></div>
-                <div><dt>{t("stack")}</dt><dd>{project.stack.join(", ")}</dd></div>
+                <div><dt>{t.role}</dt><dd>{project.role}</dd></div>
+                <div><dt>{t.period}</dt><dd>{project.period}</dd></div>
+                <div><dt>{t.stack}</dt><dd>{project.stack.join(", ")}</dd></div>
               </dl>
 
               {hasProjectLinks && (
                 <div className="button-row showcase-button-row">
                   {project.repositoryUrl && (
                     <a className="button button-secondary" href={project.repositoryUrl} target="_blank" rel="noreferrer">
-                      {t("repository")} <span aria-hidden="true">↗</span>
+                      {t.repository} <span aria-hidden="true">↗</span>
                     </a>
                   )}
                   {project.liveUrl && (
                     <a className="button button-primary" href={project.liveUrl} target="_blank" rel="noreferrer">
-                      {t("live")} <span aria-hidden="true">↗</span>
+                      {t.live} <span aria-hidden="true">↗</span>
                     </a>
                   )}
                 </div>

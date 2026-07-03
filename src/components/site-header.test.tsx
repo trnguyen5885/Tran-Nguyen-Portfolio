@@ -3,23 +3,8 @@ import { domAnimation, LazyMotion, MotionConfig } from "motion/react";
 import { describe, expect, it, vi } from "vitest";
 import { SiteHeader } from "./site-header";
 
-vi.mock("next-intl", () => ({
-  useTranslations: () => (key: string) => ({
-    home: "Home",
-    showcase: "Showcase",
-    menu: "Open navigation",
-    closeMenu: "Close navigation",
-  } as Record<string, string>)[key] ?? key,
-}));
+vi.mock("next/navigation", () => ({ usePathname: () => "/" }));
 
-vi.mock("@/i18n/navigation", () => ({
-  Link: ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) => (
-    <a href={href} {...props}>{children}</a>
-  ),
-  usePathname: () => "/",
-}));
-
-vi.mock("./locale-switch", () => ({ LocaleSwitch: () => <button type="button">VI</button> }));
 vi.mock("./theme-toggle", () => ({ ThemeToggle: () => <button type="button">Theme</button> }));
 
 describe("SiteHeader mobile menu", () => {

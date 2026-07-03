@@ -1,10 +1,10 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useTranslations } from "next-intl";
 import * as m from "motion/react-m";
 import { flushSync } from "react-dom";
 import { useRef, useSyncExternalStore } from "react";
+import { siteText } from "@/content/site-text";
 
 const subscribeToHydration = () => () => undefined;
 const getClientSnapshot = () => true;
@@ -12,7 +12,6 @@ const getServerSnapshot = () => false;
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const t = useTranslations("Navigation");
   const buttonRef = useRef<HTMLButtonElement>(null);
   const transitioningRef = useRef(false);
   const mounted = useSyncExternalStore(
@@ -72,7 +71,7 @@ export function ThemeToggle() {
             ],
           },
           {
-            duration: reverseReveal ? 600 : 520,
+            duration: reverseReveal ? 320 : 480,
             easing: reverseReveal
               ? "cubic-bezier(0.45, 0, 0.55, 1)"
               : "cubic-bezier(0.22, 1, 0.36, 1)",
@@ -83,10 +82,6 @@ export function ThemeToggle() {
           },
         );
 
-        const extendedTransition = transition as ViewTransition & {
-          waitUntil?: (promise: Promise<unknown>) => void;
-        };
-        extendedTransition.waitUntil?.(radialAnimation.finished);
         return radialAnimation.finished;
       })
       .catch(() => undefined);
@@ -102,7 +97,7 @@ export function ThemeToggle() {
       ref={buttonRef}
       type="button"
       className="icon-button"
-      aria-label={t("theme")}
+      aria-label={siteText.navigation.theme}
       onClick={toggleTheme}
     >
       <m.span
