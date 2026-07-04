@@ -1,13 +1,29 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import * as m from "motion/react-m";
 import { flushSync } from "react-dom";
 import { useRef, useSyncExternalStore } from "react";
 import { siteText } from "@/content/site-text";
 
-const subscribeToHydration = () => () => undefined;
-const getClientSnapshot = () => true;
+let hydrated = false;
+const hydrationListeners = new Set<() => void>();
+
+const subscribeToHydration = (listener: () => void) => {
+  hydrationListeners.add(listener);
+
+  if (!hydrated) {
+    queueMicrotask(() => {
+      hydrated = true;
+      hydrationListeners.forEach((listener) => listener());
+    });
+  }
+
+  return () => {
+    hydrationListeners.delete(listener);
+  };
+};
+
+const getClientSnapshot = () => hydrated;
 const getServerSnapshot = () => false;
 
 export function ThemeToggle() {
@@ -100,14 +116,13 @@ export function ThemeToggle() {
       aria-label={siteText.navigation.theme}
       onClick={toggleTheme}
     >
-      <m.span
+      <span
         aria-hidden="true"
         className="theme-icon"
-        animate={{ rotate: visibleTheme === "dark" ? 180 : 0, scale: [0.88, 1] }}
-        transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+        data-theme={visibleTheme ?? "system"}
       >
         {visibleTheme === "dark" ? "☀" : visibleTheme === "light" ? "☾" : "◐"}
-      </m.span>
+      </span>
     </button>
   );
 }

@@ -1,4 +1,20 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
+import type { SimpleIcon } from "simple-icons";
+import {
+  siAndroid,
+  siFastlane,
+  siFlutter,
+  siGit,
+  siGithub,
+  siGitlab,
+  siIos,
+  siJavascript,
+  siMobx,
+  siReact,
+  siRedux,
+  siTypescript,
+} from "simple-icons";
 import { profile } from "@/content/profile";
 import type { Experience } from "@/content/schema";
 import { siteText } from "@/content/site-text";
@@ -10,6 +26,60 @@ import {
   StaggerGroup,
   StaggerItem,
 } from "@/components/editorial-motion";
+
+const skillIcons: Partial<Record<string, SimpleIcon>> = {
+  JavaScript: siJavascript,
+  TypeScript: siTypescript,
+  "React Native": siReact,
+  Flutter: siFlutter,
+  Android: siAndroid,
+  iOS: siIos,
+  Redux: siRedux,
+  "MobX-State-Tree": siMobx,
+  "GitLab CI/CD": siGitlab,
+  Fastlane: siFastlane,
+  Git: siGit,
+  GitHub: siGithub,
+  GitLab: siGitlab,
+};
+
+const themeAdaptiveSkillIcons = new Set(["iOS", "GitHub"]);
+
+function getSkillInitials(name: string) {
+  const initials = name
+    .split(/[\s/-]+/)
+    .filter(Boolean)
+    .map((part) => part[0]?.toUpperCase())
+    .join("")
+    .slice(0, 2);
+
+  return initials || name.slice(0, 1).toUpperCase();
+}
+
+function SkillIconMark({ name }: { name: string }) {
+  const icon = skillIcons[name];
+
+  if (!icon) {
+    return (
+      <span className="skill-icon skill-icon-fallback" aria-hidden="true">
+        {getSkillInitials(name)}
+      </span>
+    );
+  }
+
+  return (
+    <span
+      className="skill-icon"
+      style={{ "--skill-icon-base-color": `#${icon.hex}` } as CSSProperties}
+      data-theme-adaptive={themeAdaptiveSkillIcons.has(name) ? "true" : undefined}
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path d={icon.path} />
+      </svg>
+    </span>
+  );
+}
 
 function Timeline({
   items,
@@ -131,7 +201,14 @@ export default function HomePage() {
             {profile.skills.map((group) => (
               <StaggerItem className="skill-group" key={group.label}>
                 <h3>{group.label}</h3>
-                <p>{group.items.join(" · ")}</p>
+                <ul className="skill-list" aria-label={`${group.label} skills`}>
+                  {group.items.map((item) => (
+                    <li className="skill-chip" key={item}>
+                      <SkillIconMark name={item} />
+                      <span className="skill-label">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </StaggerItem>
             ))}
           </StaggerGroup>

@@ -1,21 +1,15 @@
-"use client";
+import { type CSSProperties, type PropsWithChildren } from "react";
 
-import * as m from "motion/react-m";
-import { useReducedMotion, useScroll, useTransform, type Variants } from "motion/react";
-import { useRef, type PropsWithChildren } from "react";
-
-const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 28, scale: 0.975, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: "blur(0px)",
-    transition: { duration: 0.58, ease },
-  },
+type MotionStyle = CSSProperties & {
+  "--motion-delay"?: string;
+  "--motion-distance"?: string;
+  "--motion-scale"?: number;
+  "--motion-stagger"?: string;
 };
+
+function toSeconds(value: number) {
+  return `${value}s`;
+}
 
 type RevealProps = PropsWithChildren<{
   as?: "article" | "div" | "header" | "section";
@@ -37,20 +31,24 @@ export function Reveal({
   once = true,
   scale = 0.975,
 }: RevealProps) {
-  const animationProps = {
-    className,
-    id,
-    "data-motion": "reveal",
-    initial: { opacity: 0, y: distance, scale, filter: "blur(10px)" },
-    whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
-    viewport: { once, amount: 0.28, margin: "0px 0px -12% 0px" },
-    transition: { duration: 0.62, delay, ease },
-  } as const;
+  const Component = as;
+  const style: MotionStyle = {
+    "--motion-delay": toSeconds(delay),
+    "--motion-distance": `${distance}px`,
+    "--motion-scale": scale,
+  };
 
-  if (as === "article") return <m.article {...animationProps}>{children}</m.article>;
-  if (as === "header") return <m.header {...animationProps}>{children}</m.header>;
-  if (as === "section") return <m.section {...animationProps}>{children}</m.section>;
-  return <m.div {...animationProps}>{children}</m.div>;
+  return (
+    <Component
+      className={className}
+      id={id}
+      data-motion="reveal"
+      data-motion-once={once ? "true" : "false"}
+      style={style}
+    >
+      {children}
+    </Component>
+  );
 }
 
 type GroupProps = PropsWithChildren<{
@@ -69,28 +67,22 @@ export function StaggerGroup({
   stagger = 0.075,
   trigger = "viewport",
 }: GroupProps) {
-  const variants: Variants = {
-    hidden: {},
-    visible: { transition: { delayChildren: delay, staggerChildren: stagger } },
+  const Component = as;
+  const style: MotionStyle = {
+    "--motion-delay": toSeconds(delay),
+    "--motion-stagger": toSeconds(stagger),
   };
-  const animationProps = {
-    className,
-    "data-motion": "stagger-group",
-    variants,
-    initial: "hidden",
-    ...(trigger === "mount"
-      ? { animate: "visible" }
-      : {
-          whileInView: "visible",
-          viewport: { once: true, amount: 0.24, margin: "0px 0px -12% 0px" },
-        }),
-  } as const;
 
-  if (as === "dl") return <m.dl {...animationProps}>{children}</m.dl>;
-  if (as === "header") return <m.header {...animationProps}>{children}</m.header>;
-  if (as === "ol") return <m.ol {...animationProps}>{children}</m.ol>;
-  if (as === "ul") return <m.ul {...animationProps}>{children}</m.ul>;
-  return <m.div {...animationProps}>{children}</m.div>;
+  return (
+    <Component
+      className={className}
+      data-motion="stagger-group"
+      data-motion-trigger={trigger}
+      style={style}
+    >
+      {children}
+    </Component>
+  );
 }
 
 type ItemProps = PropsWithChildren<{
@@ -99,15 +91,13 @@ type ItemProps = PropsWithChildren<{
 }>;
 
 export function StaggerItem({ as = "div", children, className }: ItemProps) {
-  const animationProps = {
-    className,
-    "data-motion": "stagger-item",
-    variants: itemVariants,
-  } as const;
+  const Component = as;
 
-  if (as === "article") return <m.article {...animationProps}>{children}</m.article>;
-  if (as === "li") return <m.li {...animationProps}>{children}</m.li>;
-  return <m.div {...animationProps}>{children}</m.div>;
+  return (
+    <Component className={className} data-motion="stagger-item">
+      {children}
+    </Component>
+  );
 }
 
 type ScrollParallaxProps = PropsWithChildren<{
@@ -120,26 +110,15 @@ export function ScrollParallax({
   className,
   distance = 24,
 }: ScrollParallaxProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [distance * 1.4, 0, -distance]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.965, 1, 1.025]);
-  const opacity = useTransform(scrollYProgress, [0, 0.18, 0.82, 1], [0.64, 1, 1, 0.78]);
+  const style: MotionStyle = {
+    "--motion-distance": `${distance}px`,
+    "--motion-scale": 0.985,
+  };
 
   return (
-    <m.div
-      ref={ref}
-      className={className}
-      data-motion="scroll-parallax"
-      style={reducedMotion ? undefined : { y, scale, opacity, willChange: "transform, opacity" }}
-    >
+    <div className={className} data-motion="scroll-parallax" style={style}>
       {children}
-    </m.div>
+    </div>
   );
 }
 

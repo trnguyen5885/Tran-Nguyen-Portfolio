@@ -18,7 +18,7 @@ export const siteText = {
   },
   home: {
     eyebrow: "Nguyen Tran Trung Nguyen | Mobile Engineer",
-    headline: "I build mobile products on a strong technical foundation, with a clear focus on real user value.",
+    headline: "I build mobile products on a strong technical foundation with a clear focus on real user value.",
     intro:
       "My work covers React Native, Flutter, native NFC integrations, RESTful APIs, and release automation for mobile products in banking and internal platform environments.",
     viewWork: "View showcase",
