@@ -165,26 +165,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="about" className="section container anchor-section">
+      <section id="about" className="section container about-layout anchor-section">
         <ScrollParallax distance={20}>
-          <StaggerGroup className="section-topline">
-            <StaggerItem>
-              <p className="eyebrow">01 / {about.eyebrow}</p>
-              <h2>{about.title}</h2>
-            </StaggerItem>
-            <StaggerItem><p className="section-copy">{about.intro}</p></StaggerItem>
+          <StaggerGroup className="about-heading">
+            <StaggerItem><p className="eyebrow">01 / {about.eyebrow}</p></StaggerItem>
+            <StaggerItem><h2>{about.title}</h2></StaggerItem>
           </StaggerGroup>
         </ScrollParallax>
         <ScrollParallax distance={26}>
-          <StaggerGroup className="about-intro-grid home-about-grid">
-            <StaggerItem><p className="display-quote">“{profile.bio}”</p></StaggerItem>
-            <StaggerItem>
-              <dl className="profile-facts">
-                <div><dt>{about.name}</dt><dd>{profile.name}</dd></div>
-                <div><dt>{about.role}</dt><dd>{profile.role}</dd></div>
-                <div><dt>{about.location}</dt><dd>{profile.location}</dd></div>
-              </dl>
-            </StaggerItem>
+          <StaggerGroup className="about-copy-grid">
+            <StaggerItem><p>{about.intro}</p></StaggerItem>
+            <StaggerItem><p>{about.introSecondary}</p></StaggerItem>
+          </StaggerGroup>
+        </ScrollParallax>
+        <ScrollParallax distance={18}>
+          <StaggerGroup className="about-card-grid">
+            {about.cards.map((card) => (
+              <StaggerItem as="article" className="about-card" key={card.title}>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+                <strong>{card.emphasis}</strong>
+              </StaggerItem>
+            ))}
           </StaggerGroup>
         </ScrollParallax>
       </section>

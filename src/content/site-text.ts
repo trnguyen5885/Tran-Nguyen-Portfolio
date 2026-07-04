@@ -1,6 +1,6 @@
 export const siteText = {
   metadata: {
-    title: "Nguyen Tran Trung Nguyen - Portfolio",
+    title: "Trần Nguyên | Mobile Engineer",
     description:
       "Portfolio of Nguyen Tran Trung Nguyen, a Mobile Engineer with experience in React Native, Flutter, NFC, RESTful APIs, and mobile delivery workflows.",
   },
@@ -48,9 +48,34 @@ export const siteText = {
   },
   about: {
     eyebrow: "About",
-    title: "Building mobile experiences across frameworks",
+    title: "Mobile Engineer Cross Platform ",
     intro:
-      "I focus on adaptable mobile engineering: understanding business requirements, shaping dependable technical solutions, and continuing to grow as the platform evolves.",
+      "I am a Mobile Engineer focused on building React Native and Flutter applications that turn business requirements into reliable mobile features for real users.",
+    introSecondary:
+      "My work combines mobile UI delivery, RESTful API integration, release automation, and cross-framework problem solving across banking and internal platform products.",
+    cards: [
+      {
+        title: "Mobile Banking & NFC Workflows",
+        body:
+          "Building reusable native NFC capabilities for mobile banking flows, with attention to secure integration and practical product requirements.",
+        emphasis:
+          "VietABank ezSHOP, reusable NFC SDK modules, native Android/iOS capability, and banking feature integration.",
+      },
+      {
+        title: "Cross-framework Mobile Engineering",
+        body:
+          "Working across React Native and Flutter environments, integrating modules while keeping app performance, maintainability, and product goals aligned.",
+        emphasis:
+          "React Native, Flutter module integration, Android, iOS, Redux, MobX-State-Tree, and Zustand.",
+      },
+      {
+        title: "Product Delivery & Release Automation",
+        body:
+          "Contributing from UI polish and debugging through REST API integration, build automation, and app delivery workflows.",
+        emphasis:
+          "MyVNG, RESTful APIs, Fastlane, GitLab CI/CD, issue resolution, teamwork, and research-driven implementation.",
+      },
+    ],
     experience: "Experience",
     education: "Education & certification",
     name: "Name",
