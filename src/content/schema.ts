@@ -37,10 +37,15 @@ export const projectMetadataSchema = z.object({
   role: z.string().min(1),
   period: z.string().min(1),
   stack: z.array(z.string().min(1)).min(1),
+  logo: z.object({
+    src: z.string().startsWith("/"),
+    alt: z.string().min(1),
+  }).nullable(),
   cover: z.string().startsWith("/").nullable(),
   featured: z.boolean(),
   repositoryUrl: z.url().nullable(),
   liveUrl: z.url().nullable(),
+  storeUrl: z.url().nullable(),
   demoVideo: z.object({
     title: z.string().min(1),
     viewport: z.enum(["mobile", "desktop"]).default("mobile"),

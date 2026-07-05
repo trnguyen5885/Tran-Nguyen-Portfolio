@@ -191,17 +191,27 @@ export default function HomePage() {
         </ScrollParallax>
       </section>
 
-      <section id="skills" className="section container split-section technology-section anchor-section">
+      <section id="skills" className="section container skills-layout anchor-section">
         <ScrollParallax distance={18}>
-          <Reveal>
-            <p className="eyebrow">02 / {home.skills}</p>
-            <h2>{home.skills}</h2>
-          </Reveal>
+          <StaggerGroup className="skills-heading">
+            <StaggerItem><p className="eyebrow">02 / {home.skills}</p></StaggerItem>
+            <StaggerItem><h2>{home.skills}</h2></StaggerItem>
+          </StaggerGroup>
+        </ScrollParallax>
+        <ScrollParallax distance={22}>
+          <StaggerGroup className="skills-copy-grid">
+            <StaggerItem><p>{home.skillsIntro}</p></StaggerItem>
+            <StaggerItem><p>{home.skillsIntroSecondary}</p></StaggerItem>
+          </StaggerGroup>
         </ScrollParallax>
         <ScrollParallax distance={16}>
-          <StaggerGroup className="skill-groups">
+          <StaggerGroup className="skill-card-grid">
             {profile.skills.map((group) => (
-              <StaggerItem className="skill-group" key={group.label}>
+              <StaggerItem
+                as="article"
+                className={group.label === "Mobile" ? "skill-card skill-card-mobile" : "skill-card"}
+                key={group.label}
+              >
                 <h3>{group.label}</h3>
                 <ul className="skill-list" aria-label={`${group.label} skills`}>
                   {group.items.map((item) => (

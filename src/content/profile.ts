@@ -70,9 +70,5 @@ export const profile = profileSchema.parse({
       label: "Tools",
       items: ["Git", "GitHub", "GitLab"],
     },
-    {
-      label: "Working style",
-      items: ["Teamwork", "Self-learning", "Research", "Problem-solving"],
-    },
   ],
 });

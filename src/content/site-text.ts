@@ -24,6 +24,10 @@ export const siteText = {
     viewWork: "View showcase",
     contact: "Get in touch",
     skills: "Skills & expertise",
+    skillsIntro:
+      "A focused stack for building mobile products across JavaScript, TypeScript, React Native, Flutter, native platforms, and release workflows.",
+    skillsIntroSecondary:
+      "I keep the toolkit practical: state management, CI/CD, Git workflows, and platform tools that support reliable delivery from development to store-ready builds.",
   },
   showcase: {
     eyebrow: "Selected mobile work",
@@ -37,6 +41,7 @@ export const siteText = {
     stack: "Stack",
     repository: "Repository",
     live: "Live project",
+    store: "View on App Store",
     productType: "Product case study",
     technicalDemoType: "Technical demo",
     technicalDemoMobileHint:

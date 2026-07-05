@@ -34,6 +34,8 @@ export default function ShowcasePage() {
         name: project.title,
         description: project.summary,
         keywords: project.stack.join(", "),
+        ...(project.logo && { image: `${siteUrl}${project.logo.src}` }),
+        ...(project.storeUrl && { sameAs: project.storeUrl }),
         ...(project.demoVideo && {
           video: {
             "@type": "VideoObject",

@@ -10,16 +10,21 @@ export type Project = ProjectMetadata & {
 const vietabankEzshop = projectMetadataSchema.parse({
   slug: "vietabank-ezshop",
   kind: "product",
-  title: "VietABank ezSHOP",
+  title: "VietABank",
   summary:
     "A mobile banking application developed with reusable native NFC capabilities and cross-framework mobile integration.",
   role: "Mobile Developer · 10-person team",
   period: "Oct 2025 - Present",
   stack: ["React Native", "Flutter", "Android", "iOS"],
+  logo: {
+    src: "/images/VietABank.webp",
+    alt: "VietABank ezSHOP app logo",
+  },
   cover: null,
   featured: true,
   repositoryUrl: null,
   liveUrl: null,
+  storeUrl: "https://apps.apple.com/vn/app/vietabank-ezshop/id6757074849?l=vi",
   // Add a shareable NFC SDK-only recording here when the local assets are ready.
   demoVideo: null,
 });
@@ -33,10 +38,15 @@ const myVng = projectMetadataSchema.parse({
   role: "Mobile Developer Intern · 10-person team",
   period: "Jan 2025 - Sep 2025",
   stack: ["React Native", "Fastlane", "GitLab CI/CD"],
+  logo: {
+    src: "/images/myVNG.webp",
+    alt: "MyVNG app logo",
+  },
   cover: null,
   featured: true,
   repositoryUrl: null,
   liveUrl: null,
+  storeUrl: "https://apps.apple.com/vn/app/myvng/id1574127420",
   demoVideo: null,
 });
 
